@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     // Cloud Keywords
     "cloud consulting firm", "cloud services near me", "cloud services singapore", "singapore cloud service provider", "cloud services in singapore"
   ],
-  authors: [{ name: "Nexus Core" }],
-  creator: "Nexus Core",
-  publisher: "Nexus Core",
+  authors: [{ name: "Priyanshu Jayswal" }],
+  creator: "Priyanshu Jayswal",
+  publisher: "Priyanshu Jayswal",
   robots: {
     index: true,
     follow: true,
