@@ -3,8 +3,24 @@ import { blogPosts } from "@/lib/blog-data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Blog | NexusCore IT Solutions Bangalore",
-    description: "Read our latest articles on IT Smart Hands, WiFi surveys, and managed IT services in India.",
+    title: "Blog | IT Smart Hands & WiFi Surveys | Nexus Core",
+    description: "Read our latest articles on IT Smart Hands, WiFi surveys, managed IT services, and enterprise solutions in India and APAC.",
+    openGraph: {
+        url: "https://www.nexuscoreit.com/blog",
+        title: "Blog | IT Smart Hands & WiFi Surveys | Nexus Core",
+        description: "Latest insights on IT services, network design, and managed solutions for businesses.",
+        images: [
+            {
+                url: "https://www.nexuscoreit.com/logo.png",
+                width: 1200,
+                height: 630,
+                alt: "Nexus Core Blog",
+            },
+        ],
+    },
+    alternates: {
+        canonical: "https://www.nexuscoreit.com/blog",
+    },
 };
 
 export default function BlogPage() {

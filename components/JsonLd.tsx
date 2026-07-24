@@ -1,39 +1,28 @@
 export default function JsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ITService',
+    '@type': 'LocalBusiness',
+    '@id': 'https://www.nexuscoreit.com/',
     name: 'Nexus Core',
-    image: 'https://https://www.nexuscoreit.com//logo.png',
-    description: 'Enterprise IT support, system integration, and outsourcing solutions in Singapore & Malaysia.',
-    url: 'https://https://www.nexuscoreit.com/',
-    telephone: '+65-1234-5678', // Placeholder
+    image: 'https://www.nexuscoreit.com/logo.png',
+    description: 'IT Smart Hands, Ekahau WiFi surveys, and 24/7 managed IT support in Bangalore and APAC.',
+    url: 'https://www.nexuscoreit.com/',
+    telephone: '+91-XXXXXXXXXX',
+    email: 'support@nexuscoreit.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '123 Tech Park', // Placeholder
-      addressLocality: 'Singapore',
-      postalCode: '123456', // Placeholder
-      addressCountry: 'SG',
+      streetAddress: 'Bangalore',
+      addressLocality: 'Bangalore',
+      addressRegion: 'Karnataka',
+      postalCode: '560034',
+      addressCountry: 'IN',
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 1.3521,
-      longitude: 103.8198,
-    },
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-      ],
-      opens: '09:00',
-      closes: '18:00',
-    },
+    areaServed: ['IN', 'SG', 'MY'],
+    serviceType: ['IT Support', 'WiFi Site Surveys', 'Managed IT Services', 'Data Center Support'],
+    priceRange: '$$',
     sameAs: [
-      'https://www.linkedin.com/company/nexus-core', // Placeholder
-      'https://www.facebook.com/nexus-core', // Placeholder
+      'https://www.linkedin.com/company/nexus-core',
+      'https://www.facebook.com/nexus-core',
     ],
   };
 

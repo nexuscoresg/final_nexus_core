@@ -62,6 +62,14 @@ export const metadata: Metadata = {
     title: "Nexus Core IT Smart Hands & Support, Bangalore",
     description: "IT Smart Hands, Ekahau WiFi surveys, and 24/7 managed IT support in Bangalore and APAC.",
     siteName: "Nexus Core",
+    images: [
+      {
+        url: "https://www.nexuscoreit.com/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexus Core",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -74,9 +82,6 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
-  alternates: {
-    canonical: "https://www.nexuscoreit.com/",
-  },
 };
 
 import { Analytics } from "@vercel/analytics/react";

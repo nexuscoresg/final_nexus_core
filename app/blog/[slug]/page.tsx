@@ -12,10 +12,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = blogPosts.find((p) => p.slug === slug);
     if (!post) return {};
 
+    const postUrl = `https://www.nexuscoreit.com/blog/${slug}`;
     return {
-        title: `${post.title} | NexusCore IT Blog`,
+        title: `${post.title} | Nexus Core IT Blog`,
         description: post.excerpt,
         keywords: [post.targetKeyword, "IT support Bangalore", "managed IT services India"],
+        openGraph: {
+            url: postUrl,
+            type: "article",
+            title: post.title,
+            description: post.excerpt,
+            images: [
+                {
+                    url: "https://www.nexuscoreit.com/logo.png",
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+            publishedTime: new Date(post.date).toISOString(),
+            authors: ["Nexus Core"],
+        },
+        alternates: {
+            canonical: postUrl,
+        },
     };
 }
 
