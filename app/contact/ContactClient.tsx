@@ -4,11 +4,16 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { MapPin, Mail, Phone, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+// Hardcoded authentication token
+const HARDCODED_AUTH_TOKEN = "a7f9d2e1c8b";
 
 export default function ContactClient() {
   const [formData, setFormData] = useState({ name: '', email: '', service: '', message: '' });
   const [errors, setErrors] = useState({ name: '', email: '', service: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -32,7 +37,22 @@ export default function ContactClient() {
     if (valid) {
       setStatus('submitting');
 
+      // Verify authentication token from environment variable
+      const envAuthToken = process.env.NEXT_PUBLIC_FORM_AUTH_TOKEN;
+      
+      if (envAuthToken !== HARDCODED_AUTH_TOKEN) {
+        toast({
+          title: "Authentication Error",
+          description: "Contact admin: Authentication token is missing or invalid.",
+          variant: "destructive",
+        });
+        setStatus('idle');
+        return;
+      }
+
       try {
+        const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@nexuscore.com.sg";
+        
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
@@ -47,6 +67,8 @@ export default function ContactClient() {
             message: formData.message,
             subject: `New Service Request: ${formData.service} from ${formData.name}`,
             from_name: "Nexus Core Website",
+            to_email: contactEmail,
+            auth_token: envAuthToken,
           }),
         });
 
@@ -58,12 +80,20 @@ export default function ContactClient() {
         } else {
           console.error("Submission failed:", result);
           setStatus('idle');
-          alert("Something went wrong. Please try again or contact us directly at support@nexuscore.com.sg");
+          toast({
+            title: "Submission Failed",
+            description: "Something went wrong. Please try again or contact us directly at " + contactEmail,
+            variant: "destructive",
+          });
         }
       } catch (error) {
         console.error("Submission error:", error);
         setStatus('idle');
-        alert("Unable to send message. Please check your internet connection and try again.");
+        toast({
+          title: "Connection Error",
+          description: "Unable to send message. Please check your internet connection and try again.",
+          variant: "destructive",
+        });
       }
     }
   };
